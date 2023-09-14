@@ -1,0 +1,2 @@
+This documentation provides a brief guide to using the CRUD (Create, Read, Update, Delete) operations implemented in a RESTful API using FastAPI. The API serves as a basic example for managing resources, demonstrating how to create, retrieve, update, and delete items. 
+The API manages a resource called "Persons" which represents a simple item with a unique identifier and a name.

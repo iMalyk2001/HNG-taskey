@@ -65,7 +65,7 @@ async def update_person(userId: int,  update_person: Persons):
     db.close()
     return {"message": "Student updated successfully", "student_data": update_person.dict()}
 
-@app.delete("/api/{userId}")
+@app.delete("/api/{user_Id}")
 async def delete_person(userId: int):
     db = SessionLocal()
     student = db.query(StudentDB).filter(StudentDB.userId == userId).first()
