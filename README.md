@@ -14,9 +14,9 @@ Start the development server: uvicorn main:app --reload Access the API at http:/
 
 API Endpoints List and explain the available API endpoints, including their purposes and any required parameters.
 
-Endpoint Method Description
+                                                Endpoint Method Description
 
-/api/ GET Retrieve a list of persons /api/ POST Create a new person /api/user_id GET Retrieve a specific person by ID /api/user_id PUT Update a specific person by ID /api/user_id DELETE Delete a specific person
+/api/ GET Retrieve a list of persons /api/ POST Create a new person /api/userId GET Retrieve a specific person by ID /api/userId PUT Update a specific person by ID /api/userId DELETE Delete a specific person
 
 Examples for retrieving, creating, and updating a person using Postman:
 

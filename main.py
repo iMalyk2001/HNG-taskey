@@ -49,26 +49,26 @@ def get_person(userId: int):
         return {"message": "Student not found"}
     return {"student_data": {"userId": student.userId, "name": student.name}}
 
-@app.put("/api/{useruserId}")
-async def update_person(useruserId: int,  update_person: Persons):
+@app.put("/api/{userId}")
+async def update_person(userId: int,  update_person: Persons):
     db = SessionLocal()
-    student = db.query(StudentDB).filter(StudentDB.useruserId == useruserId).first()
+    student = db.query(StudentDB).filter(StudentDB.userId == userId).first()
     if student is None:
         db.close()
         raise HTTPException(status_code=404, detail="Student not found")
     
     # Update the student data based on the updated_person input
-    student.useruserId = update_person.useruserId
+    student.userId = update_person.userId
     student.name = update_person.name
     
     db.commit()
     db.close()
     return {"message": "Student updated successfully", "student_data": update_person.dict()}
 
-@app.delete("/api/{user_useruserId}")
-async def delete_person(useruserId: int):
+@app.delete("/api/{user_userId}")
+async def delete_person(userId: int):
     db = SessionLocal()
-    student = db.query(StudentDB).filter(StudentDB.useruserId == useruserId).first()
+    student = db.query(StudentDB).filter(StudentDB.userId == userId).first()
     if student is None:
         db.close()
         raise HTTPException(status_code=404, detail="Student not found")
