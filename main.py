@@ -15,7 +15,7 @@ Base = declarative_base()
 class StudentDB(Base):
     __tablename__ = "Student"
 
-    id = Column(Integer, primary_key=True, index=True)
+    userId = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
 
 Base.metadata.create_all(bind=engine)
@@ -23,7 +23,7 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 class Persons(BaseModel):
-    id: int
+    userId: int
     name: str
 
 @app.get("/")
@@ -32,7 +32,7 @@ def home():
 
 @app.post("/api")
 def create_person(person: Persons):
-    db_student = StudentDB(id=person.id, name=person.name)
+    db_student = StudentDB(userId=person.userId, name=person.name)
     db = SessionLocal()
     db.add(db_student)
     db.commit()
@@ -40,35 +40,35 @@ def create_person(person: Persons):
     db.close()
     return {"message": "Student created successfully", "student_data": person.dict()}
 
-@app.get("/api/{id}")
-def get_person(id: int):
+@app.get("/api/{userId}")
+def get_person(userId: int):
     db = SessionLocal()
-    student = db.query(StudentDB).filter(StudentDB.id == id).first()
+    student = db.query(StudentDB).filter(StudentDB.userId == userId).first()
     db.close()
     if student is None:
         return {"message": "Student not found"}
-    return {"student_data": {"id": student.id, "name": student.name}}
+    return {"student_data": {"userId": student.userId, "name": student.name}}
 
-@app.put("/api/{id}")
-async def update_person(id: int,  update_person: Persons):
+@app.put("/api/{useruserId}")
+async def update_person(useruserId: int,  update_person: Persons):
     db = SessionLocal()
-    student = db.query(StudentDB).filter(StudentDB.id == id).first()
+    student = db.query(StudentDB).filter(StudentDB.useruserId == useruserId).first()
     if student is None:
         db.close()
         raise HTTPException(status_code=404, detail="Student not found")
     
     # Update the student data based on the updated_person input
-    student.id = update_person.id
+    student.useruserId = update_person.useruserId
     student.name = update_person.name
     
     db.commit()
     db.close()
     return {"message": "Student updated successfully", "student_data": update_person.dict()}
 
-@app.delete("/api/{user_Id}")
-async def delete_person(id: int):
+@app.delete("/api/{user_useruserId}")
+async def delete_person(useruserId: int):
     db = SessionLocal()
-    student = db.query(StudentDB).filter(StudentDB.id == id).first()
+    student = db.query(StudentDB).filter(StudentDB.useruserId == useruserId).first()
     if student is None:
         db.close()
         raise HTTPException(status_code=404, detail="Student not found")
