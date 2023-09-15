@@ -23,7 +23,6 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 class Persons(BaseModel):
-    userId: int
     name: str
 
 @app.get("/")
@@ -32,7 +31,7 @@ def home():
 
 @app.post("/api")
 def create_person(person: Persons):
-    db_student = StudentDB(userId=person.userId, name=person.name)
+    db_student = StudentDB(name=person.name)
     db = SessionLocal()
     db.add(db_student)
     db.commit()
@@ -58,14 +57,13 @@ async def update_person(userId: int,  update_person: Persons):
         raise HTTPException(status_code=404, detail="Student not found")
     
     # Update the student data based on the updated_person input
-    student.userId = update_person.userId
     student.name = update_person.name
     
     db.commit()
     db.close()
     return {"message": "Student updated successfully", "person_data": update_person.dict()}
 
-@app.delete("/api/{user_userId}")
+@app.delete("/api/{userId}")
 async def delete_person(userId: int):
     db = SessionLocal()
     student = db.query(StudentDB).filter(StudentDB.userId == userId).first()
