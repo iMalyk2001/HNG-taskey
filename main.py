@@ -47,7 +47,7 @@ def get_person(userId: int):
     db.close()
     if student is None:
         return {"message": "Student not found"}
-    return {"student_data": {"userId": student.userId, "name": student.name}}
+    return  {"userId": student.userId, "name": student.name}
 
 @app.put("/api/{userId}")
 async def update_person(userId: int,  update_person: Persons):
@@ -63,7 +63,7 @@ async def update_person(userId: int,  update_person: Persons):
     
     db.commit()
     db.close()
-    return {"message": "Student updated successfully", "student_data": update_person.dict()}
+    return {"message": "Student updated successfully", "person_data": update_person.dict()}
 
 @app.delete("/api/{user_userId}")
 async def delete_person(userId: int):
@@ -71,9 +71,9 @@ async def delete_person(userId: int):
     student = db.query(StudentDB).filter(StudentDB.userId == userId).first()
     if student is None:
         db.close()
-        raise HTTPException(status_code=404, detail="Student not found")
+        raise HTTPException(status_code=404, detail="Person not found")
     
     db.delete(student)
     db.commit()
     db.close()
-    return {"message": "Student deleted successfully"}
+    return {"message": "Person deleted successfully"}

@@ -5,7 +5,7 @@ The FastAPI Student Management API is a web-based application for managing stude
 Base URL
 The base URL for accessing the API is:
 
-``` https://hng-taskey2.onrender.com ```
+https://hng-taskey2.onrender.com/
 
 
                                     ENDPOINTS
@@ -60,8 +60,6 @@ Run the FastAPI application using uvicorn main:app --host 0.0.0.0 --port 8000.
 Feedback and Contributions
 We welcome feedback, bug reports, and contributions from the community. If you encounter issues or have suggestions for improvements, please open an issue on the project's GitHub repository.
 
-License
-This project is open-source and licensed under the MIT License.
 
 This documentation provides an overview of the FastAPI Student Management API, including its endpoints, data formats, and dependencies. Feel free to expand this documentation to include more detailed information about the API, its use cases, and additional features as your project evolves.
 

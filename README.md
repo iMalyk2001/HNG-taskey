@@ -2,7 +2,7 @@ Installation
 
 Detailed instructions on how to install and set up your API. Include steps like:
 
-Clone the repository: git clone 
+Clone the repository: git clone git@github.com:iMalyk2001/HNG-taskey.git
 
 Create a virtual environment (optional but recommended): python -m venv venv source venv/bin/activate # On Windows, use: venv\Scripts\activate
 
@@ -16,19 +16,14 @@ API Endpoints List and explain the available API endpoints, including their purp
 
                                                 Endpoint Method Description
 
-/api/ GET Retrieve a list of persons /api/ POST Create a new person /api/userId GET Retrieve a specific person by ID /api/userId PUT Update a specific person by ID /api/userId DELETE Delete a specific person
+ 
+/api/ POST Create a new person
+/api/userId GET Retrieve a specific person by ID 
+/api/userId PUT Update a specific person by ID 
+/api/userId DELETE Delete a specific person
 
 Examples for retrieving, creating, and updating a person using Postman:
 
-Retrieving a List of All Persons (GET Request)
-
-URL: http://127.0.0.1:8000/api/
-Method: GET In Postman:
-Create a new request.
-Set the request type to "GET."
-Enter the API URL: http://127.0.0.1:8000/api/
-Click "Send." This will show you a list of all persons in your API.
-Creating a New Person (POST Request)
 
 URL: http://127.0.0.1:8000/api/
 Method: POST
